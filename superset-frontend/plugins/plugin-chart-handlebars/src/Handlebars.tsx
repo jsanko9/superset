@@ -37,13 +37,20 @@ export default function Handlebars(props: HandlebarsProps) {
   const handlebarTemplateSource = formData.handlebarsTemplate
     ? formData.handlebarsTemplate
     : '{{data}}';
-  const templateSource = `${handlebarTemplateSource}\n${styleTemplateSource} `;
+  const helperTemplateSource = formData.helpersTemplate
+    ? `${formData.helpersTemplate}`
+    : '';
+  const templateSource = `${handlebarTemplateSource}\n${styleTemplateSource}\n `;
 
   const rootElem = createRef<HTMLDivElement>();
 
   return (
     <Styles ref={rootElem} height={height} width={width}>
-      <HandlebarsViewer data={{ data }} templateSource={templateSource} />
+      <HandlebarsViewer
+        data={{ data }}
+        templateSource={templateSource}
+        helpersSource={helperTemplateSource}
+      />
     </Styles>
   );
 }

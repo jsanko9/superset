@@ -26,11 +26,13 @@ import Helpers from 'just-handlebars-helpers';
 export interface HandlebarsViewerProps {
   templateSource: string;
   data: any;
+  helpersSource: string;
 }
 
 export const HandlebarsViewer = ({
   templateSource,
   data,
+  helpersSource,
 }: HandlebarsViewerProps) => {
   const [renderedTemplate, setRenderedTemplate] = useState('');
   const [error, setError] = useState('');
@@ -44,6 +46,18 @@ export const HandlebarsViewer = ({
 
   useMemo(() => {
     try {
+      const helpers = eval?.(`helpersObjects = ${helpersSource}`);
+      // console.log('helpers (evaluated2):');
+      // console.log(helpers);
+      Handlebars.registerHelper(helpers);
+      // console.log('helpersSource:');
+      // console.log(helpersSource);
+      // console.log('helpers array');
+      // console.log(Handlebars.helpers);
+      // console.log('Handlebars.js Object');
+      // console.log(Handlebars);
+
+
       const template = Handlebars.compile(templateSource);
       const result = template(data);
       setRenderedTemplate(result);
@@ -52,7 +66,7 @@ export const HandlebarsViewer = ({
       setRenderedTemplate('');
       setError(error.message);
     }
-  }, [templateSource, data]);
+  }, [data, templateSource, helpersSource]);
 
   const Error = styled.pre`
     white-space: pre-wrap;
