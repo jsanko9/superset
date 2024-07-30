@@ -22,11 +22,13 @@ import AceEditor, { IAceEditorProps } from 'react-ace';
 
 // must go after AceEditor import
 import 'ace-builds/src-min-noconflict/mode-handlebars';
+import 'ace-builds/src-min-noconflict/mode-javascript';
 import 'ace-builds/src-min-noconflict/mode-css';
+// import 'ace-builds/src-min-noconflict/worker-javascript';
 import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/theme-monokai';
 
-export type CodeEditorMode = 'handlebars' | 'css';
+export type CodeEditorMode = 'handlebars' | 'javascript' | 'css';
 export type CodeEditorTheme = 'light' | 'dark';
 
 export interface CodeEditorProps extends IAceEditorProps {
@@ -72,6 +74,7 @@ export const CodeEditor: FC<CodeEditorProps> = ({
           showLineNumbers: true,
           tabSize: 2,
           showGutter: true,
+          useWorker: false,
         }}
         {...rest}
       />

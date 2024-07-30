@@ -32,6 +32,7 @@ export interface HandlebarsStylesProps {
 interface HandlebarsCustomizeProps {
   handlebarsTemplate?: string;
   styleTemplate?: string;
+  helpersTemplate?: string;
 }
 
 export type HandlebarsQueryFormData = QueryFormData &

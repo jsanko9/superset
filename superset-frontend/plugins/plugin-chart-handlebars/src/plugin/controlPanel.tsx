@@ -24,6 +24,7 @@ import { t } from '@superset-ui/core';
 import { allColumnsControlSetItem } from './controls/columns';
 import { groupByControlSetItem } from './controls/groupBy';
 import { handlebarsTemplateControlSetItem } from './controls/handlebarTemplate';
+import { handlebarsHelpersControlSetItem } from './controls/helpersTemplate';
 import { includeTimeControlSetItem } from './controls/includeTime';
 import {
   rowLimitControlSetItem,
@@ -69,6 +70,7 @@ const config: ControlPanelConfig = {
       expanded: true,
       controlSetRows: [
         [handlebarsTemplateControlSetItem],
+        [handlebarsHelpersControlSetItem],
         [styleControlSetItem],
       ],
     },
