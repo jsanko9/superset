@@ -56,8 +56,6 @@ export const HandlebarsViewer = ({
       // console.log(Handlebars.helpers);
       // console.log('Handlebars.js Object');
       // console.log(Handlebars);
-
-
       const template = Handlebars.compile(templateSource);
       const result = template(data);
       setRenderedTemplate(result);
