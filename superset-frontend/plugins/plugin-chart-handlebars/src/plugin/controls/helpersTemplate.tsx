@@ -17,64 +17,63 @@
  * under the License.
  */
 import {
-    ControlSetItem,
-    CustomControlConfig,
-    sharedControls,
-    InfoTooltipWithTrigger,
-  } from '@superset-ui/chart-controls';
-  import { t, useTheme, validateNonEmpty } from '@superset-ui/core';
-  import React from 'react';
-  import { CodeEditor } from '../../components/CodeEditor/CodeEditor';
-  import { ControlHeader } from '../../components/ControlHeader/controlHeader';
-  import { debounceFunc } from '../../consts';
-  interface HelpersCustomControlProps {
-    value: string;
-  }
-  const HelpersTemplateControl = (
-    props: CustomControlConfig<HelpersCustomControlProps>,
-  ) => {
-    const theme = useTheme();
-    const defaultValue = String(
-      props?.value ? props?.value : props?.default ? props?.default : '{}',
-    );
-    return (
-      <div>
-        <ControlHeader>
-          <div>
-            {props.label}
-            <InfoTooltipWithTrigger
-              iconsStyle={{ marginLeft: theme.gridUnit }}
-              tooltip={t(
-                'You need to configure HTML sanitization to use Helpers.',
-              )}
-            />
-          </div>
-        </ControlHeader>
-        <CodeEditor
-          theme="dark"
-          mode="javascript"
-          value={props.value}
-          defaultValue={defaultValue}
-          onChange={source => {
-            debounceFunc(props.onChange, source || '');
-          }}
-        />
-      </div>
-    );
-  };
-  export const handlebarsHelpersControlSetItem: ControlSetItem = {
-    name: 'HelpersTemplate',
-    config: {
-      ...sharedControls.entity,
-      type: HelpersTemplateControl,
-      label: t('Handlebars Helpers'),
-      description: t('Handlebar Helpers to be registered'),
-      default: '{}',
-      isInt: false,
-      renderTrigger: true,
-      validators: [validateNonEmpty],
-      mapStateToProps: ({ controls }) => ({
-        value: controls?.handlebars_template?.value,
-      }),
-    },
-  };
+  ControlSetItem,
+  CustomControlConfig,
+  sharedControls,
+  InfoTooltipWithTrigger,
+} from '@superset-ui/chart-controls';
+import { t, useTheme, validateNonEmpty } from '@superset-ui/core';
+import { CodeEditor } from '../../components/CodeEditor/CodeEditor';
+import { ControlHeader } from '../../components/ControlHeader/controlHeader';
+import { debounceFunc } from '../../consts';
+interface HelpersCustomControlProps {
+  value: string;
+}
+const HelpersTemplateControl = (
+  props: CustomControlConfig<HelpersCustomControlProps>,
+) => {
+  const theme = useTheme();
+  const defaultValue = String(
+    props?.value ? props?.value : props?.default ? props?.default : '{}',
+  );
+  return (
+    <div>
+      <ControlHeader>
+        <div>
+          {props.label}
+          <InfoTooltipWithTrigger
+            iconsStyle={{ marginLeft: theme.gridUnit }}
+            tooltip={t(
+              'You need to configure HTML sanitization to use Helpers.',
+            )}
+          />
+        </div>
+      </ControlHeader>
+      <CodeEditor
+        theme="dark"
+        mode="javascript"
+        value={props.value}
+        defaultValue={defaultValue}
+        onChange={source => {
+          debounceFunc(props.onChange, source || '');
+        }}
+      />
+    </div>
+  );
+};
+export const handlebarsHelpersControlSetItem: ControlSetItem = {
+  name: 'HelpersTemplate',
+  config: {
+    ...sharedControls.entity,
+    type: HelpersTemplateControl,
+    label: t('Handlebars Helpers'),
+    description: t('Handlebar Helpers to be registered'),
+    default: '{}',
+    isInt: false,
+    renderTrigger: true,
+    validators: [validateNonEmpty],
+    mapStateToProps: ({ controls }) => ({
+      value: controls?.handlebars_template?.value,
+    }),
+  },
+};
