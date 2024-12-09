@@ -91,6 +91,7 @@ module.exports = {
       ],
       plugins: ['@typescript-eslint/eslint-plugin', 'react', 'prettier'],
       rules: {
+        'no-eval': ["error", {"allowIndirect": true}],
         '@typescript-eslint/ban-ts-ignore': 0,
         '@typescript-eslint/ban-ts-comment': 0, // disabled temporarily
         '@typescript-eslint/ban-types': 0, // disabled temporarily
